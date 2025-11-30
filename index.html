@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Official Elliktronic Website</title>
     <link rel="icon" href="https://frutigeraeroarchive.org/images/icons/mobile/ios/photos.png" type="image/png">
-    <!-- Подключаем 7.css -->
     <link rel="stylesheet" href="https://unpkg.com/7.css@0.21.1/dist/7.css">
 
     <style>
@@ -166,13 +165,11 @@
         font-family: 'MS San Serif', Arial, sans-serif;
     }
 
-    .title-bar-text, .icon-text, .player-btn, .player-info,
-    .time-display, .guest, .name, [role="menuitem"],
+    .title-bar-text, .icon-text, .guest, .name, [role="menuitem"],
     [role="tab"], .window-body {
         font-family: 'MS San Serif', Arial, sans-serif;
     }
 
-    /* ПОЛНЫЙ белый фон на ВСЕ окно */
     .window-body {
         background: white !important;
         padding: 0 !important;
@@ -180,7 +177,6 @@
         min-height: 350px;
     }
 
-    /* Убираем ВСЕ отступы */
     .tabs {
         margin: 0 !important;
     }
@@ -193,12 +189,10 @@
         min-height: 300px;
     }
 
-    /* Убираем отступы между меню и контентом */
     .window-menu {
         margin-bottom: 0;
     }
 
-    /* Убираем ВСЕ стандартные отступы */
     .window {
         margin-bottom: 0;
     }
@@ -207,28 +201,23 @@
         margin: 0 !important;
     }
 
-    /* Убираем отступ снизу у панелей вкладок 7.css */
     [role="tabpanel"] {
         margin-bottom: 0 !important;
     }
 
-    /* Стили для кнопок вкладок - делаем белый фон активной вкладки */
     menu[role="tablist"] button[aria-selected="true"] {
         background: white !important;
         border-bottom: 1px solid white !important;
     }
 
-    /* Убираем стандартные стили для кнопок вкладок */
     menu[role="tablist"] button {
         font-family: 'MS San Serif', Arial, sans-serif;
     }
 
-    /* Убираем ВСЕ возможные отступы */
     * {
         box-sizing: border-box;
     }
 
-    /* Переопределяем ВСЕ отступы 7.css */
     .window .window-body {
         margin: 0 !important;
     }
@@ -244,50 +233,59 @@
         padding: 15px !important;
     }
 
-    /* Делаем так чтобы белый фон был ПОЛНОСТЬЮ */
     .window-body::after {
         content: '';
         display: block;
         height: 0;
         clear: both;
     }
+
+    .zzz-fix-margins {
+        margin: 0 !important;
+    }
+    
+    .zov-white-bg {
+        background: white !important;
+    }
+    
+    .svo-no-padding {
+        padding: 0 !important;
+    }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <!-- Левая плашка с иконками -->
         <div class="left-panel">
-            <div class="icon-item" onclick="openLink('https://www.youtube.com')">
+            <div class="icon-item" onclick="handleLinkClick('https://www.youtube.com')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/youtube.png" alt="YouTube">
                 <span class="icon-text">YouTube</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://github.com')">
+            <div class="icon-item" onclick="handleLinkClick('https://github.com')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/books.png" alt="GitHub">
                 <span class="icon-text">GitHub</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://bsky.app')">
+            <div class="icon-item" onclick="handleLinkClick('https://bsky.app')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/messages.png" alt="BlueSky">
                 <span class="icon-text">BlueSky</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://soundcloud.com')">
+            <div class="icon-item" onclick="handleLinkClick('https://soundcloud.com')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/apple_music.png" alt="SoundCloud">
                 <span class="icon-text">SoundCloud</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://beepbox.co')">
+            <div class="icon-item" onclick="handleLinkClick('https://beepbox.co')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/notes.png" alt="BeepBox">
                 <span class="icon-text">BeepBox</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://processing.org')">
+            <div class="icon-item" onclick="handleLinkClick('https://processing.org')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/settings.png" alt="Processing">
                 <span class="icon-text">Processing</span>
             </div>
-            <div class="icon-item" onclick="openLink('https://itch.io')">
+            <div class="icon-item" onclick="handleLinkClick('https://itch.io')">
                 <img src="https://frutigeraeroarchive.org/images/icons/mobile/ios/photos.png" alt="itch.io">
                 <span class="icon-text">itch.io</span>
             </div>
         </div>
 
-        <!-- Правое окно со вкладками -->
         <div class="window active" style="width: 430px;">
             <div class="title-bar">
                 <div class="title-bar-text">About me & Projects</div>
@@ -297,62 +295,59 @@
                 </div>
             </div>
 
-            <!-- Меню File, Edit, View, Help из 7.css -->
             <div class="window-menu">
                 <ul role="menubar">
                     <li role="menuitem">
                         File
                         <ul role="menu">
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('New project')">New</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Open project')">Open</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Save project')">Save</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('New project')">New</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Open project')">Open</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Save project')">Save</a></li>
                             <li role="menuitem" class="has-divider"></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); window.print()">Print</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); window.close()">Exit</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); window.print()">Print</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); window.close()">Exit</a></li>
                         </ul>
                     </li>
                     <li role="menuitem">
                         Edit
                         <ul role="menu">
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Undo')">Undo</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Redo')">Redo</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Undo')">Undo</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Redo')">Redo</a></li>
                             <li role="menuitem" class="has-divider"></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Cut')">Cut</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Copy')">Copy</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Paste')">Paste</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Cut')">Cut</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Copy')">Copy</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Paste')">Paste</a></li>
                         </ul>
                     </li>
                     <li role="menuitem">
                         View
                         <ul role="menu">
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); toggleFullscreen()">Full Screen</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); zoomIn()">Zoom In</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); zoomOut()">Zoom Out</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); resetZoom()">Reset Zoom</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); toggleFullScreen()">Full Screen</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); increaseZoom()">Zoom In</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); decreaseZoom()">Zoom Out</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); restoreZoom()">Reset Zoom</a></li>
                         </ul>
                     </li>
                     <li role="menuitem">
                         Help
                         <ul role="menu">
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); openLink('https://github.com')">View Help</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); openLink('https://processing.org')">About Processing</a></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); openLink('https://beepbox.co')">About BeepBox</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); handleLinkClick('https://github.com')">View Help</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); handleLinkClick('https://processing.org')">About Processing</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); handleLinkClick('https://beepbox.co')">About BeepBox</a></li>
                             <li role="menuitem" class="has-divider"></li>
-                            <li role="menuitem"><a href="#" onclick="event.preventDefault(); alert('Elliktronic Portfolio v1.0')">About</a></li>
+                            <li role="menuitem"><a href="#" onclick="doNothing(event); showMessage('Elliktronic Portfolio v1.0')">About</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <!-- Вкладки из 7.css -->
             <div class="window-body">
                 <section class="tabs">
                     <menu role="tablist">
-                        <button role="tab" aria-selected="true" onclick="switchTab(0)">About</button>
-                        <button role="tab" aria-selected="false" onclick="switchTab(1)">Projects</button>
+                        <button role="tab" aria-selected="true" onclick="changeTab(0)">About</button>
+                        <button role="tab" aria-selected="false" onclick="changeTab(1)">Projects</button>
                     </menu>
                     <article role="tabpanel">
-                        <!-- Вкладка About -->
                         <div id="tab-0">
                             <div class="gray">
                                 <span class="guest">Guest:</span> Hi! Tell me about yourself!
@@ -375,15 +370,14 @@
                         </div>
                     </article>
                     <article role="tabpanel" hidden>
-                        <!-- Вкладка Projects -->
                         <div id="tab-1">
-                            <div class="project-panel" onclick="openLink('https://recubeim.leafprod.xyz')">
+                            <div class="project-panel" onclick="handleLinkClick('https://recubeim.leafprod.xyz')">
                                 <div class="project-title">Recubeim</div>
                                 <div class="project-desc">A 2D sandbox with retro graphics.</div>
                                 <div class="project-tech">=Processing=</div>
                             </div>
                             
-                            <div class="project-panel" onclick="openLink('https://leafprod.xyz')">
+                            <div class="project-panel" onclick="handleLinkClick('https://leafprod.xyz')">
                                 <div class="project-title">Aetheris</div>
                                 <div class="project-desc">A surreal sandbox exploration game where you manipulate reality itself. No website at the moment!</div>
                                 <div class="project-tech">=Processing=</div>
@@ -396,36 +390,33 @@
     </div>
 
     <script>
-        // Переключение вкладок (используем встроенный функционал 7.css)
-        function switchTab(tabIndex) {
-            const tabs = document.querySelectorAll('[role="tab"]');
-            const panels = document.querySelectorAll('[role="tabpanel"]');
+        function changeTab(tabNumber) {
+            const tabButtons = document.querySelectorAll('[role="tab"]');
+            const tabPanels = document.querySelectorAll('[role="tabpanel"]');
             
-            tabs.forEach((tab, index) => {
-                tab.setAttribute('aria-selected', index === tabIndex);
+            tabButtons.forEach((button, index) => {
+                button.setAttribute('aria-selected', index === tabNumber);
             });
             
-            panels.forEach((panel, index) => {
-                panel.hidden = index !== tabIndex;
+            tabPanels.forEach((panel, index) => {
+                panel.hidden = index !== tabNumber;
             });
         }
 
-        // Открытие ссылок
-        function openLink(url) {
-            const element = event.currentTarget;
-            const name = element.querySelector('.project-title')?.textContent || 
-                        element.querySelector('.icon-text')?.textContent || 
-                        'Link';
-            if(confirm(`Open ${name}?`)) {
+        function handleLinkClick(url) {
+            const clickedElement = event.currentTarget;
+            const itemName = clickedElement.querySelector('.project-title')?.textContent || 
+                           clickedElement.querySelector('.icon-text')?.textContent || 
+                           'Link';
+            if(confirm(`Open ${itemName}?`)) {
                 window.open(url, '_blank');
             }
         }
 
-        // Функции для меню View
-        function toggleFullscreen() {
+        function toggleFullScreen() {
             if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                document.documentElement.requestFullscreen().catch(error => {
+                    console.log(`Fullscreen error: ${error.message}`);
                 });
             } else {
                 if (document.exitFullscreen) {
@@ -434,30 +425,37 @@
             }
         }
 
-        let currentZoom = 1;
+        let zoomLevel = 1;
         
-        function zoomIn() {
-            if (currentZoom < 1.5) {
-                currentZoom += 0.1;
-                document.body.style.transform = `scale(${currentZoom})`;
+        function increaseZoom() {
+            if (zoomLevel < 1.5) {
+                zoomLevel += 0.1;
+                document.body.style.transform = `scale(${zoomLevel})`;
                 document.body.style.transformOrigin = 'center top';
             }
         }
 
-        function zoomOut() {
-            if (currentZoom > 0.5) {
-                currentZoom -= 0.1;
-                document.body.style.transform = `scale(${currentZoom})`;
+        function decreaseZoom() {
+            if (zoomLevel > 0.5) {
+                zoomLevel -= 0.1;
+                document.body.style.transform = `scale(${zoomLevel})`;
                 document.body.style.transformOrigin = 'center top';
             }
         }
 
-        function resetZoom() {
-            currentZoom = 1;
+        function restoreZoom() {
+            zoomLevel = 1;
             document.body.style.transform = 'scale(1)';
         }
 
-        // Запрет масштабирования
+        function showMessage(text) {
+            alert(text);
+        }
+
+        function doNothing(event) {
+            event.preventDefault();
+        }
+
         document.addEventListener('wheel', function(e) {
             if (e.ctrlKey) {
                 e.preventDefault();
